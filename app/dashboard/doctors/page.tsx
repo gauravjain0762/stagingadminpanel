@@ -73,6 +73,7 @@ const handleSelectOne = (id: string) => {
 
   useEffect(() => {
     dispatch(setFilter({ status: statusFilter }));
+    dispatch(setPage(1));
   }, [dispatch, statusFilter]);
 
   const filtered = useMemo(() => {
@@ -102,6 +103,9 @@ const handleSelectOne = (id: string) => {
     const specs = (list as any[]).flatMap((d) => d.fullData?.services || []).filter(Boolean);
     return [...new Set(specs)] as string[];
   }, [list]);
+
+  const filteredTotal = filtered.length;
+  const filteredTotalPages = Math.ceil(filteredTotal / pagination.limit) || 1;
 
   const paginated = filtered.slice(
     (pagination.page - 1) * pagination.limit,
@@ -233,13 +237,13 @@ const handleSelectOne = (id: string) => {
         <div className="flex items-center gap-3 p-4 border-b border-border-subtle flex-wrap">
           <SearchBar
             value={filters.search}
-            onChange={(v) => dispatch(setFilter({ search: v }))}
+            onChange={(v) => { dispatch(setFilter({ search: v })); dispatch(setPage(1)); }}
             placeholder="Search doctors, email, specialization..."
             className="flex-1 min-w-48"
           />
           <SelectFilter
   value={filters.specialization}
-  onChange={(v) => dispatch(setFilter({ specialization: v }))}
+  onChange={(v) => { dispatch(setFilter({ specialization: v })); dispatch(setPage(1)); }}
   options={[
     { label: "All Specializations", value: "" },
     ...uniqueSpecializations.map((s) => ({ label: s, value: s })),
@@ -248,7 +252,7 @@ const handleSelectOne = (id: string) => {
 />
           <SelectFilter
             value={filters.status}
-            onChange={(v) => dispatch(setFilter({ status: v }))}
+            onChange={(v) => { dispatch(setFilter({ status: v })); dispatch(setPage(1)); }}
             options={[
               { label: "All Status", value: "" },
               { label: "Active", value: "active" },
@@ -258,7 +262,7 @@ const handleSelectOne = (id: string) => {
           />
           <SelectFilter
   value={filters.city}
-  onChange={(v) => dispatch(setFilter({ city: v }))}
+  onChange={(v) => { dispatch(setFilter({ city: v })); dispatch(setPage(1)); }}
   options={[
     { label: "All Cities", value: "" },
     ...uniqueCities.map((city) => ({ label: city, value: city })),
@@ -287,12 +291,12 @@ const handleSelectOne = (id: string) => {
             <div className="flex items-center justify-between px-4 py-3 border-t border-border-subtle">
               <p className="text-text-muted text-xs">
                 Page <span className="text-text-primary font-medium">{pagination.page}</span> of{" "}
-                <span className="text-text-primary font-medium">{pagination.totalPages}</span>{" "}
-                &mdash; <span className="text-text-primary font-medium">{pagination.total}</span> total
+                <span className="text-text-primary font-medium">{filteredTotalPages}</span>{" "}
+                &mdash; <span className="text-text-primary font-medium">{filteredTotal}</span> total
               </p>
               <Pagination
                 page={pagination.page}
-                total={pagination.total}
+                total={filteredTotal}
                 limit={pagination.limit}
                 onPageChange={(p) => dispatch(setPage(p))}
               />

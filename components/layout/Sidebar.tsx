@@ -9,12 +9,13 @@ import {
   LayoutDashboard, Stethoscope, Building2, Users, Calendar,
   ListOrdered, ShieldCheck, CreditCard, MapPin, Star,
   Bell, HeadphonesIcon, BarChart3, FileText, Settings,
-  UserCog, ChevronLeft, ChevronRight, ChevronDown, Activity, Smartphone,
+  UserCog, ChevronLeft, ChevronRight, ChevronDown, Activity, Smartphone, Package,
 } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Doctors", href: "/dashboard/doctors", icon: Stethoscope },
+  { label: "Plans", href: "/dashboard/plans", icon: Package },
   // { label: "Clinics", href: "/clinics", icon: Building2 },
   // { label: "Patients", href: "/patients", icon: Users },
   { label: "Appointments", href: "/appointments", icon: Calendar },

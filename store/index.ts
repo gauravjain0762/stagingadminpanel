@@ -16,6 +16,7 @@ import pendingDoctorsReducer from "./slices/pendingDoctorsSlice";
 import doctorAnalyticsReducer from "./slices/doctorAnalyticsSlice";
 import doctorPatientsReducer from "./slices/doctorPatientsSlice";
 import appSettingsReducer from "./slices/appSettingsSlice";
+import plansReducer from "./slices/plansSlice";
 
 export const store = configureStore({
   reducer: {
@@ -35,6 +36,7 @@ export const store = configureStore({
     doctorAnalytics: doctorAnalyticsReducer,
     doctorPatients: doctorPatientsReducer,
     appSettings: appSettingsReducer,
+    plans: plansReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

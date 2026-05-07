@@ -36,10 +36,6 @@ export const fetchAllDoctors = createAsyncThunk(
         }))
         .sort((a: any, b: any) => {
           const getTime = (item: any): number => {
-            if (item.updatedAt) {
-              const t = new Date(item.updatedAt).getTime();
-              if (!isNaN(t)) return t;
-            }
             if (item.createdAt) {
               const t = new Date(item.createdAt).getTime();
               if (!isNaN(t)) return t;
