@@ -1,7 +1,10 @@
 ﻿"use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Save } from "lucide-react";
+
+const RichTextEditor = dynamic(() => import("@/components/ui/RichTextEditor"), { ssr: false });
 
 const BASE_URL = "https://hospital-saas-backend.onrender.com";
 const getAdminToken = () =>
@@ -135,15 +138,11 @@ export default function PrivacyPage() {
               Loading content...
             </div>
           ) : (
-            <textarea
+            <RichTextEditor
               key={activeTab}
-              value={contents[activeTab]}
-              onChange={(e) =>
-                setContents((p) => ({ ...p, [activeTab]: e.target.value }))
-              }
+              content={contents[activeTab]}
+              onChange={(html) => setContents((p) => ({ ...p, [activeTab]: html }))}
               placeholder={`Enter Privacy & Policy for ${activeTab === "doctor" ? "doctors" : "patients"}...`}
-              rows={26}
-              className="w-full bg-transparent px-5 py-4 text-text-primary text-sm leading-relaxed resize-none focus:outline-none placeholder:text-text-muted"
             />
           )}
         </div>
