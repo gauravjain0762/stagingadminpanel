@@ -6,7 +6,7 @@ import { Save } from "lucide-react";
 
 const RichTextEditor = dynamic(() => import("@/components/ui/RichTextEditor"), { ssr: false });
 
-const BASE_URL = "https://hospital-saas-backend.onrender.com";
+const BASE_URL = "https://hospital-saas-backend-production.up.railway.app";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 

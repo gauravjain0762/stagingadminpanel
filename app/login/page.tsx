@@ -23,7 +23,7 @@ export default function LoginPage() {
     setError("");
     try {
       const res = await fetch(
-        "https://hospital-saas-backend.onrender.com/api/auth/admin-login",
+        "https://hospital-saas-backend-production.up.railway.app/api/auth/admin-login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

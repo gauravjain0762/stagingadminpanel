@@ -1,7 +1,7 @@
 ﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { SupportTicket } from "@/types";
 
-const BASE_URL = "https://hospital-saas-backend.onrender.com";
+const BASE_URL = "https://hospital-saas-backend-production.up.railway.app";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 

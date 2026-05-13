@@ -194,7 +194,7 @@ function AnalyticsTab({ doctorId }: { doctorId: string }) {
  
           {/* Card 4 — Pricing Model */}
           <StatCard
-            title="Pricing Model"
+            title="Appointment Fee"
             icon="🏷️"
             value={`₹${data.pricingModel.consultationFee}`}
             sub={
@@ -449,9 +449,15 @@ const getInitials = (name = "") => {
                   <p className="text-sm mt-2">
                     <b>Consultation Fee:</b> ₹{data.clinic?.consultationFee}
                   </p>
-                  <p className="text-sm">                                         {/* ADD THIS */}
+                  <p className="text-sm">
   <b>Free Followup Days:</b> {data.clinic?.freeFollowupDays ?? "N/A"} days
 </p>
+                  {data.clinicId && (
+                    <p className="text-sm mt-1">
+                      <b>Clinic ID:</b>{" "}
+                      <span className="font-mono text-base text-text-muted break-all">{data.clinicId}</span>
+                    </p>
+                  )}
 
                   <div className="flex flex-col gap-1 mt-2">
                     {data.clinic?.latitude && data.clinic?.longitude && (

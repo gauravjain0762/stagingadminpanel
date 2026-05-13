@@ -1,11 +1,15 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(Get-ChildItem -Recurse -File \"F:\\\\company\\\\hospital-admin ui\\\\second branch\\\\Pulse-Clinical\" -Include \"*.ts\",\"*.tsx\",\"*.js\",\"*.env*\",\"*.example\")",
+      "Bash(Select-String -SimpleMatch \"hospital-saas-backend.onrender.com\")",
+      "Bash(Select-Object -ExpandProperty Path)",
+      "Bash(Sort-Object -Unique)"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "code-review-graph"
-  ],
-  "permissions": {
-    "allow": [
-      "Bash(npm install *)"
-    ]
-  }
+  ]
 }
