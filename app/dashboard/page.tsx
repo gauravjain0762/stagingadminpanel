@@ -31,7 +31,7 @@ export default function DashboardPage() {
 
   const row2Cards = [
     { label: "Total Patients", value: formatNumber(metrics.totalPatients), icon: <Users size={16} />, onClick: () => router.push("/patients") },
-    { label: "Total Appointments", value: formatNumber(metrics.todaysAppointments), icon: <Calendar size={16} />, onClick: () => router.push("/appointments") },
+    { label: "Total Appointments", value: formatNumber(metrics.totalAppointments), icon: <Calendar size={16} />, onClick: () => router.push("/appointments") },
   ];
 
   return (

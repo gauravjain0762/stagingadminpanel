@@ -1,79 +1,44 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  dummyDoctors,
-  dummyPatients,
-  dummyAppointments,
-  appointmentTrendData,
-  revenueData,
-  patientGrowthData,
-  recentActivity,
-} from "@/lib/dummyData";
+
+const BASE_URL = "https://hospital-saas-backend-production.up.railway.app";
+const getAdminToken = () =>
+  localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 
 interface DashboardState {
   metrics: {
-    totalDoctors: number;
     totalPatients: number;
-    totalClinics: number;
-    todaysAppointments: number;
-    completedAppointments: number;
-    cancelledAppointments: number;
-    activeTokens: number;
-    totalRevenue: number;
+    totalAppointments: number;
   };
-  appointmentTrend: typeof appointmentTrendData;
-  revenueChart: typeof revenueData;
-  patientGrowth: typeof patientGrowthData;
-  recentActivity: typeof recentActivity;
-  topDoctors: typeof dummyDoctors;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: DashboardState = {
   metrics: {
-    totalDoctors: 0,
     totalPatients: 0,
-    totalClinics: 0,
-    todaysAppointments: 0,
-    completedAppointments: 0,
-    cancelledAppointments: 0,
-    activeTokens: 0,
-    totalRevenue: 0,
+    totalAppointments: 0,
   },
-  appointmentTrend: [],
-  revenueChart: [],
-  patientGrowth: [],
-  recentActivity: [],
-  topDoctors: [],
   loading: false,
   error: null,
 };
 
 export const fetchDashboardData = createAsyncThunk(
   "dashboard/fetchData",
-  async () => {
-    // Simulate API delay
-    await new Promise((r) => setTimeout(r, 600));
-    return {
-      metrics: {
-        totalDoctors: dummyDoctors.length,
-        totalPatients: dummyPatients.length,
-        totalClinics: 5,
-        todaysAppointments: 320,
-        completedAppointments: dummyAppointments.filter((a) => a.status === "completed").length,
-        cancelledAppointments: dummyAppointments.filter((a) => a.status === "cancelled").length,
-        activeTokens: 48,
-        totalRevenue: 1284500,
-      },
-      appointmentTrend: appointmentTrendData,
-      revenueChart: revenueData,
-      patientGrowth: patientGrowthData,
-      recentActivity,
-      topDoctors: dummyDoctors
-        .filter((d) => d.verificationStatus === "approved")
-        .sort((a, b) => b.rating - a.rating)
-        .slice(0, 3),
-    };
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = getAdminToken();
+      const res = await fetch(`${BASE_URL}/api/admin/dashboard/stats`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to fetch dashboard stats");
+      return {
+        totalPatients: data.totalPatients ?? 0,
+        totalAppointments: data.totalAppointments ?? 0,
+      };
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
   }
 );
 
@@ -89,12 +54,8 @@ const dashboardSlice = createSlice({
       })
       .addCase(fetchDashboardData.fulfilled, (state, action) => {
         state.loading = false;
-        state.metrics = action.payload.metrics;
-        state.appointmentTrend = action.payload.appointmentTrend;
-        state.revenueChart = action.payload.revenueChart;
-        state.patientGrowth = action.payload.patientGrowth;
-        state.recentActivity = action.payload.recentActivity;
-        state.topDoctors = action.payload.topDoctors;
+        state.metrics.totalPatients = action.payload.totalPatients;
+        state.metrics.totalAppointments = action.payload.totalAppointments;
       })
       .addCase(fetchDashboardData.rejected, (state, action) => {
         state.loading = false;
