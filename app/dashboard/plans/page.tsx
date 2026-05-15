@@ -559,42 +559,49 @@ function AddWalletModal({
 
       <div className="space-y-4">
         <div className="flex items-center justify-between px-4 py-3 bg-bg-elevated rounded-lg">
-          <span className="text-text-muted text-sm">Current Balance</span>
-          <span className="text-emerald-400 font-semibold">₹{currentBalance.toLocaleString()}</span>
+          <span className="text-text-muted text-sm">Current Tokens</span>
+          <span className="text-emerald-400 font-semibold">{currentBalance.toLocaleString()}</span>
         </div>
 
         <div>
           <label className="block text-text-muted text-xs font-medium uppercase tracking-wider mb-1.5">
-            Amount to Add (₹)
+            Tokens to add
           </label>
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            min="1"
+            onChange={(e) => {
+              const val = e.target.value.replace(/\D/g, "").slice(0, 5);
+              setAmount(val);
+            }}
+            placeholder="e.g. 500"
+            maxLength={5}
             className={inputCls}
           />
+          <p className="text-text-muted text-xs mt-1">Numbers only · max 5 digits (up to 99999)</p>
         </div>
 
-        <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-3 text-xs text-amber-400">
+        {/* <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-3 text-xs text-amber-400">
           <Wallet size={12} className="inline mr-1.5" />
           New balance: ₹{newBalance.toLocaleString()} · {newBalance} tokens available
-        </div>
+        </div> */}
 
         <div className="flex gap-3 justify-end pt-2">
           <button
-            onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-border-default text-text-muted text-sm hover:text-text-primary transition"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            disabled={saving || !amount || Number(amount) < 1}
-            className="px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium disabled:opacity-50 transition"
-          >
-            {saving ? "Adding..." : "Add Balance"}
-          </button>
+  onClick={onClose}
+  className="px-4 py-2 rounded-lg border border-border-default text-text-muted text-sm hover:text-text-primary transition"
+>
+  Cancel
+</button>
+
+<button
+  onClick={handleSubmit}
+  disabled={saving || !amount || Number(amount) < 1}
+  className="px-4 py-2 rounded-lg border border-border-default text-text-muted text-sm hover:text-text-primary disabled:opacity-50 transition"
+>
+  {saving ? "Adding..." : "Add Balance"}
+</button>
         </div>
       </div>
     </Modal>
@@ -736,12 +743,12 @@ function PlansContent() {
     },
     {
       key: "balance",
-      label: "Tokens / Wallet",
+      label: "Tokens",
       render: (d: any) => {
         if (!d.planInfo) return <span className="text-text-muted text-xs">—</span>;
         const { plan, walletBalance, tokensAvailable } = d.planInfo;
         if (plan?.planType === "pay_per_token")
-          return <span className="text-amber-400 font-medium">₹{walletBalance?.toLocaleString()}</span>;
+          return <span className="text-text-muted font-medium">{walletBalance?.toLocaleString()}</span>;
         if (plan?.planType === "monthly_unlimited")
           return <span className="text-blue-400 font-medium">Unlimited</span>;
         return <span className="text-emerald-400 font-medium">{tokensAvailable} tokens</span>;
@@ -873,7 +880,7 @@ function PlansContent() {
             <SearchBar
               value={search}
               onChange={setSearch}
-              placeholder="Search doctors by name or email..."
+              placeholder="Search doctors by name or email"
               className="flex-1 max-w-sm"
             />
             <p className="text-text-muted text-xs ml-auto">

@@ -13,6 +13,7 @@ import {
   MetricCard,
   LoadingSpinner,
   StarRating,
+  SearchBar,
 } from "@/components/ui";
 import { Download, Plus, ShieldCheck, X, Trash2 } from "lucide-react";
 import {
@@ -31,6 +32,7 @@ export default function DoctorRequestsPage() {
   const [selectedDoctor, setSelectedDoctor] = useState<any>(null);
   const getDoctorId = (d: any) => d?.id || d?._id || "";
 
+  const [search, setSearch] = useState("");
   const [deleteMode, setDeleteMode] = useState(false);
 const [selectedIds, setSelectedIds] = useState<string[]>([]);
 const [showConfirm, setShowConfirm] = useState(false);
@@ -139,7 +141,17 @@ const handleDeleteSelected = async () => {
     dispatch(fetchPendingDoctors(pagination.page));
   }, [dispatch, pagination.page]);
 
-  const paginated = list;
+  const paginated = search.trim()
+    ? list.filter((d: any) => {
+        const q = search.toLowerCase();
+        return (
+          d.name?.toLowerCase().includes(q) ||
+          d.email?.toLowerCase().includes(q) ||
+          d.clinic?.toLowerCase().includes(q) ||
+          d.specialization?.toLowerCase().includes(q)
+        );
+      })
+    : list;
 
   const columns = [
     {
@@ -295,7 +307,7 @@ const handleDeleteSelected = async () => {
         Cancel
       </button>
     </div>
-  ) : (
+  ) : list.length > 0 ? (
     <button
       onClick={() => setDeleteMode(true)}
       className="h-9 px-4 rounded-lg border border-red-600 text-red-500 text-sm font-medium flex items-center gap-2 hover:bg-red-600 hover:text-white transition"
@@ -303,13 +315,19 @@ const handleDeleteSelected = async () => {
       <Trash2 size={14} />
       Delete
     </button>
-  )
+  ) : null
 }
          />
 
         <SectionCard noPadding className="mb-6">
-          <div className="p-4 border-b border-border-subtle">
-            <p className="text-text-muted text-sm">
+          <div className="flex items-center gap-3 p-4 border-b border-border-subtle">
+            <SearchBar
+              value={search}
+              onChange={setSearch}
+              placeholder="Search by name, email, clinic"
+              className="flex-1 max-w-sm"
+            />
+            <p className="text-text-muted text-xs ml-auto">
               Showing all pending doctor requests
             </p>
           </div>

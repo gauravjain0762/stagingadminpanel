@@ -32,17 +32,12 @@ export const fetchPendingDoctors = createAsyncThunk(
           fullData: user,
         }))
         .sort((a: any, b: any) => {
-          const getTime = (item: any): number => {
-            if (item.createdAt) {
-              const t = new Date(item.createdAt).getTime();
-              if (!isNaN(t)) return t;
-            }
-            if (typeof item.id === "string" && item.id.length >= 8) {
-              return parseInt(item.id.substring(0, 8), 16) * 1000;
-            }
-            return 0;
-          };
-          return getTime(b) - getTime(a);
+          const aTime = a.createdAt ? new Date(a.createdAt).getTime() : NaN;
+          const bTime = b.createdAt ? new Date(b.createdAt).getTime() : NaN;
+          if (isNaN(aTime) && isNaN(bTime)) return 0;
+          if (isNaN(aTime)) return 1;
+          if (isNaN(bTime)) return -1;
+          return bTime - aTime;
         });
 
       const total = data.total ?? users.length;

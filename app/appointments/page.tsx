@@ -6,7 +6,7 @@ import { fetchAllDoctors } from "@/store/slices/allDoctorsSlice";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { PageHeader, SearchBar, SelectFilter, DataTable, StatusBadge, Pagination, SectionCard, LoadingSpinner } from "@/components/ui";
 import { Appointment } from "@/types";
-import { Download } from "lucide-react";
+import { Download, Clock } from "lucide-react";
 
 export default function AppointmentsPage() {
   const dispatch = useAppDispatch();
@@ -54,9 +54,16 @@ export default function AppointmentsPage() {
     {
       key: "date", label: "Date & Time",
       render: (a: Appointment) => (
-        <div>
-          <p className="text-text-primary text-sm">{a.date}</p>
-          <p className="text-text-muted text-xs">{a.time}</p>
+        <div className="flex flex-col gap-0.5">
+          <p className="text-text-primary text-sm">
+            {new Date(a.date).toLocaleDateString("en-GB")}
+          </p>
+          {a.time && (
+            <p className="text-text-muted text-xs flex items-center gap-1">
+              <Clock size={10} className="shrink-0" />
+              {a.time}
+            </p>
+          )}
         </div>
       ),
     },
@@ -89,7 +96,7 @@ export default function AppointmentsPage() {
             <SearchBar
               value={filters.search}
               onChange={(v) => dispatch(setAppointmentsFilter({ search: v }))}
-              placeholder="Search by patient, doctor, or ID..."
+              placeholder="Search by patient, doctor, or ID"
               className="flex-1 min-w-52"
             />
             <SelectFilter

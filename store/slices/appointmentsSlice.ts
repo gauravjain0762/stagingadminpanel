@@ -59,7 +59,7 @@ export const fetchAppointments = createAsyncThunk(
         clinic: a.clinicName ?? a.clinic?.clinicName ?? a.clinic?.name ?? (typeof a.clinic === "string" ? a.clinic : "") ?? "",
         clinicId: a.clinicId ?? a.clinic?._id ?? "",
         date: a.date ?? "",
-        time: a.time ?? "",
+        time: a.time ?? a.timeSlot ?? a.slot ?? a.slotTime ?? a.appointmentSlot ?? a.slot?.startTime ?? "",
         tokenNumber: a.tokenNumber ?? a.token ?? 0,
         status: a.status ?? "waiting",
         paymentStatus: a.paymentStatus ?? "pending",

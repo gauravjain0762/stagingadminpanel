@@ -265,14 +265,16 @@ const getFileName = (label: string) => {
   const formatTo12Hour = (time: string) => {
   if (!time) return "";
 
+  // Backend already returns 12-hour format (e.g. "08:00 PM") — just strip leading zero
+  if (/AM|PM/i.test(time)) {
+    return time.replace(/^0(\d)/, "$1");
+  }
+
+  // Handle 24-hour format (e.g. "14:30")
   const [hourStr, minute] = time.split(":");
   let hour = parseInt(hourStr);
-
   const ampm = hour >= 12 ? "PM" : "AM";
-
-  hour = hour % 12;
-  hour = hour === 0 ? 12 : hour;
-
+  hour = hour % 12 || 12;
   return `${hour}:${minute} ${ampm}`;
 };
 

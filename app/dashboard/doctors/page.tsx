@@ -218,7 +218,7 @@ const handleSelectOne = (id: string) => {
         Cancel
       </button>
     </div>
-  ) : (
+  ) : filtered.length > 0 ? (
     <button
       onClick={() => setDeleteMode(true)}
       className="h-9 px-4 rounded-lg border border-red-600 text-red-500 text-sm font-medium flex items-center gap-2 hover:bg-red-600 hover:text-white transition"
@@ -226,7 +226,7 @@ const handleSelectOne = (id: string) => {
       <Trash2 size={14} />
       Delete
     </button>
-  )
+  ) : null
 }
       />
         
@@ -236,7 +236,7 @@ const handleSelectOne = (id: string) => {
           <SearchBar
             value={filters.search}
             onChange={(v) => { dispatch(setFilter({ search: v })); dispatch(setPage(1)); }}
-            placeholder="Search doctors, email, specialization..."
+            placeholder="Search doctors, email, specialization"
             className="flex-1 min-w-48"
           />
           <SelectFilter
