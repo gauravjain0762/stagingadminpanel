@@ -1,4 +1,4 @@
-// clinicsSlice.ts
+﻿// clinicsSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Clinic } from "@/types";
 import { dummyClinics } from "@/lib/dummyData";
@@ -57,3 +57,4 @@ const clinicsSlice = createSlice({
 
 export const { setFilter: setClinicsFilter, setPage: setClinicsPage, selectClinic } = clinicsSlice.actions;
 export default clinicsSlice.reducer;
+

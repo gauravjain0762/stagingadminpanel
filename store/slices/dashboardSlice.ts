@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+﻿import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const BASE_URL = "https://hospital-saas-backend-production.up.railway.app";
+const BASE_URL = "https://staging-api.queuetoken.in";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 
@@ -65,3 +65,4 @@ const dashboardSlice = createSlice({
 });
 
 export default dashboardSlice.reducer;
+

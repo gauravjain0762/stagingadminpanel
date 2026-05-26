@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Notification } from "@/types";
 import { dummyNotifications } from "@/lib/dummyData";
 
@@ -81,3 +81,4 @@ const notificationsSlice = createSlice({
 
 export const { setPage: setNotificationsPage } = notificationsSlice.actions;
 export default notificationsSlice.reducer;
+

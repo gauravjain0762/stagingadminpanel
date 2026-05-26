@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UIState {
   sidebarCollapsed: boolean;
@@ -43,3 +43,4 @@ const uiSlice = createSlice({
 export const { toggleSidebar, setSidebarCollapsed, openModal, closeModal, setGlobalSearch } =
   uiSlice.actions;
 export default uiSlice.reducer;
+

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Review } from "@/types";
 import { dummyReviews, sentimentData } from "@/lib/dummyData";
 
@@ -66,3 +66,4 @@ const reviewsSlice = createSlice({
 
 export const { setFilter: setReviewsFilter, setPage: setReviewsPage } = reviewsSlice.actions;
 export default reviewsSlice.reducer;
+

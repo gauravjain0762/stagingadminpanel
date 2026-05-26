@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://api.pulseclinical.com/v1",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://staging-api.queuetoken.in",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

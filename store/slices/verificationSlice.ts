@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { VerificationDoc } from "@/types";
 import { dummyVerifications } from "@/lib/dummyData";
 
@@ -73,3 +73,4 @@ const verificationSlice = createSlice({
 
 export const { setFilter: setVerificationFilter, selectDoc } = verificationSlice.actions;
 export default verificationSlice.reducer;
+

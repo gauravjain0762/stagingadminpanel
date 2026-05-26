@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Doctor } from "@/types";
 import { dummyDoctors } from "@/lib/dummyData";
 
@@ -100,3 +100,4 @@ const doctorsSlice = createSlice({
 
 export const { setFilter, setPage, selectDoctor, clearFilters } = doctorsSlice.actions;
 export default doctorsSlice.reducer;
+

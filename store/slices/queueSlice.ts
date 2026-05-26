@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { QueueEntry } from "@/types";
 import { dummyQueue } from "@/lib/dummyData";
 
@@ -85,3 +85,4 @@ const queueSlice = createSlice({
 
 export const { updateQueueEntry } = queueSlice.actions;
 export default queueSlice.reducer;
+
