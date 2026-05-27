@@ -15,8 +15,8 @@ export const fetchDeletionRequests = createAsyncThunk(
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to fetch deletion requests");
 
-      const requests = (data.requests ?? data.doctors ?? []).map((item: any) => ({
-        id: item._id || item.doctorId,
+      const requests = (data.doctors ?? data.requests ?? []).map((item: any) => ({
+        id: item.id || item._id || item.doctorId,
         name: item.name,
         email: item.email || "",
         phone: item.phone || "",
