@@ -151,6 +151,18 @@ export default function Sidebar() {
                     >
                       Doctor Requests
                     </Link>
+
+                    <Link
+                      href="/dashboard/doctors/deleted"
+                      className={cn(
+                        "block px-3 py-1.5 text-sm rounded-md",
+                        pathname === "/dashboard/doctors/deleted"
+                          ? "text-accent-red"
+                          : "text-text-muted hover:text-text-primary"
+                      )}
+                    >
+                      Delete Requests
+                    </Link>
                   </div>
                 )}
               </div>

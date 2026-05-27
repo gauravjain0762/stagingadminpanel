@@ -17,6 +17,7 @@ import doctorAnalyticsReducer from "./slices/doctorAnalyticsSlice";
 import doctorPatientsReducer from "./slices/doctorPatientsSlice";
 import appSettingsReducer from "./slices/appSettingsSlice";
 import plansReducer from "./slices/plansSlice";
+import deletedDoctorsReducer from "./slices/deletedDoctorsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -37,6 +38,7 @@ export const store = configureStore({
     doctorPatients: doctorPatientsReducer,
     appSettings: appSettingsReducer,
     plans: plansReducer,
+    deletedDoctors: deletedDoctorsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

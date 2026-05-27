@@ -5,7 +5,10 @@
       "Bash(Get-ChildItem -Recurse -File \"F:\\\\company\\\\hospital-admin ui\\\\second branch\\\\Pulse-Clinical\" -Include \"*.ts\",\"*.tsx\",\"*.js\",\"*.env*\",\"*.example\")",
       "Bash(Select-String -SimpleMatch \"hospital-saas-backend.onrender.com\")",
       "Bash(Select-Object -ExpandProperty Path)",
-      "Bash(Sort-Object -Unique)"
+      "Bash(Sort-Object -Unique)",
+      "Bash(Get-ChildItem -Path \"f:\\\\company\\\\hospital-admin ui\\\\New folder\\\\Hospital-adminpanel\" -Recurse -Force)",
+      "Bash(Select-Object -First 50)",
+      "Bash(Format-Table FullName)"
     ]
   },
   "enableAllProjectMcpServers": true,
