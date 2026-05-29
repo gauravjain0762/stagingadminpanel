@@ -42,7 +42,7 @@ export const fetchAppVersions = createAsyncThunk(
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to fetch");
 
-      const list: AppVersionConfig[] = Array.isArray(data) ? data : data.data ?? [];
+      const list: AppVersionConfig[] = Array.isArray(data) ? data : data.versions ?? data.data ?? [];
       return list.reduce((acc, cfg) => {
         const key = toAppKey(cfg.appType, cfg.platform);
         if (key) acc[key] = cfg;
