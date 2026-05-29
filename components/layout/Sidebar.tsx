@@ -9,7 +9,7 @@ import {
   LayoutDashboard, Stethoscope, Building2, Users, Calendar,
   ListOrdered, ShieldCheck, CreditCard, MapPin, Star,
   Bell, HeadphonesIcon, BarChart3, FileText, Settings,
-  UserCog, ChevronLeft, ChevronRight, ChevronDown, Activity, Smartphone, Package,
+  UserCog, ChevronLeft, ChevronRight, ChevronDown, Smartphone, Package,
 } from "lucide-react";
 
 const navItems = [
@@ -63,8 +63,12 @@ export default function Sidebar() {
         "flex items-center gap-3 px-4 h-[60px] border-b border-border-default shrink-0",
         collapsed && "justify-center px-0"
       )}>
-        <div className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center shrink-0">
-          <Activity size={16} className="text-white" />
+        <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0">
+          <img
+            src="https://res.cloudinary.com/dbazlbkfj/image/upload/v1780046292/icon-removebg-preview_jirlb4.png"
+            alt="Queue Token"
+            className="w-full h-full object-cover"
+          />
         </div>
         {!collapsed && (
           <div>
@@ -76,7 +80,7 @@ export default function Sidebar() {
 
       {!collapsed && (
         <div className="px-4 py-2 border-b border-border-subtle">
-          <p className="text-text-muted text-[10px] uppercase tracking-widest">Precision Admin</p>
+          <p className="text-text-muted text-[10px] uppercase tracking-widest"></p>
         </div>
       )}
 
@@ -235,7 +239,7 @@ export default function Sidebar() {
             );
           }
 
-          const active = pathname === href || pathname.startsWith(href + "/");
+          const active = pathname === href;
           return (
             <Link
               key={href}

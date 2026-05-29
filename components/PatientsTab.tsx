@@ -72,7 +72,7 @@ export default function PatientsTab({ doctorId }: { doctorId: string }) {
             className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
               activeFilter === f.value
                 ? "bg-accent-red border-accent-red text-white"
-                : "border-border-default text-text-muted hover:text-white hover:border-[#555]"
+                : "border-border-default text-text-muted hover:text-text-primary hover:border-border-default"
             }`}
           >
             {f.label}
@@ -145,7 +145,7 @@ export default function PatientsTab({ doctorId }: { doctorId: string }) {
               {patients.map((p) => (
                 <tr
                   key={p.appointmentId}
-                  className="border-b border-border-default last:border-0 hover:bg-bg-primary transition"
+                  className="border-b border-border-default last:border-0 hover:bg-bg-hover transition"
                 >
                   <td className="px-5 py-4 text-text-muted">{p.tokenNumber}</td>
                   <td className="px-5 py-4">

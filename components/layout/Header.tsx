@@ -1,8 +1,9 @@
 "use client";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setGlobalSearch } from "@/store/slices/uiSlice";
-import { Search, Bell, Calendar, Headphones, LogOut } from "lucide-react";
+import { Search, Bell, Calendar, Headphones, LogOut, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 
 interface HeaderProps {
   title?: string;
@@ -12,6 +13,8 @@ export default function Header({ title }: HeaderProps) {
   const dispatch = useAppDispatch();
   const search = useAppSelector((s) => s.ui.globalSearch);
   const collapsed = useAppSelector((s) => s.ui.sidebarCollapsed);
+  const { theme, toggleTheme } = useTheme();
+
   const handleLogout = () => {
   // remove tokens
   localStorage.removeItem("token");
@@ -33,7 +36,7 @@ export default function Header({ title }: HeaderProps) {
         <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
         <input
           type="text"
-          placeholder="Search medical records, doctors, or analytics..."
+          placeholder="Search doctors or analytics"
           value={search}
           onChange={(e) => dispatch(setGlobalSearch(e.target.value))}
           className="w-full h-9 pl-9 pr-4 bg-bg-card border border-border-default rounded-lg text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-red/50 transition-colors"
@@ -45,6 +48,15 @@ export default function Header({ title }: HeaderProps) {
         {/* <button className="w-9 h-9 rounded-lg border border-border-default bg-bg-card flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent-red/30 transition-all">
           <Calendar size={16} />
         </button> */}
+
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          className="w-9 h-9 rounded-lg border border-border-default bg-bg-card flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent-red/30 transition-all"
+          title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+        >
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
 
         {/* Notifications */}
         <button className="w-9 h-9 rounded-lg border border-border-default bg-bg-card flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent-red/30 transition-all relative">

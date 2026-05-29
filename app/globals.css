@@ -92,3 +92,68 @@ body {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+   Uses attribute-selector + class-selector (specificity 0,2,0) which
+   beats Tailwind's single-class output (specificity 0,1,0).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Body */
+[data-theme="light"] body { background-color: #f5f5f5; color: #111111; }
+
+/* Backgrounds */
+[data-theme="light"] .bg-bg-primary   { background-color: #f5f5f5; }
+[data-theme="light"] .bg-bg-secondary { background-color: #ffffff; }
+[data-theme="light"] .bg-bg-card      { background-color: #ffffff; }
+[data-theme="light"] .bg-bg-elevated  { background-color: #f8f8f8; }
+[data-theme="light"] .bg-bg-hover     { background-color: #f0f0f0; }
+
+/* Hover backgrounds */
+[data-theme="light"] .hover\:bg-bg-primary:hover   { background-color: #efefef; }
+[data-theme="light"] .hover\:bg-bg-secondary:hover { background-color: #f5f5f5; }
+[data-theme="light"] .hover\:bg-bg-hover:hover     { background-color: #f0f0f0; }
+
+/* Text */
+[data-theme="light"] .text-text-primary   { color: #111111; }
+[data-theme="light"] .text-text-secondary { color: #555555; }
+[data-theme="light"] .text-text-muted     { color: #999999; }
+
+/* Hover text */
+[data-theme="light"] .hover\:text-text-primary:hover { color: #111111; }
+
+/* Placeholder text */
+[data-theme="light"] .placeholder\:text-text-muted::placeholder { color: #aaaaaa; }
+
+/* Borders */
+[data-theme="light"] .border-border-default { border-color: #e0e0e0; }
+[data-theme="light"] .border-border-subtle  { border-color: #eeeeee; }
+
+/* Hover borders */
+[data-theme="light"] .hover\:border-border-default:hover { border-color: #e0e0e0; }
+
+/* text-white: dark on light backgrounds, stays white on colored backgrounds */
+[data-theme="light"] .text-white { color: #111111; }
+[data-theme="light"] [class*="bg-gradient"].text-white,
+[data-theme="light"] [class*="bg-red-"].text-white,
+[data-theme="light"] [class*="bg-green-"].text-white,
+[data-theme="light"] [class*="bg-emerald-"].text-white,
+[data-theme="light"] .bg-accent-red.text-white { color: #ffffff; }
+
+/* Scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-thumb       { background: #d0d0d0; }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #b8b8b8; }
+
+/* Shimmer skeleton */
+[data-theme="light"] .animate-shimmer {
+  background: linear-gradient(90deg, #ebebeb 25%, #f5f5f5 50%, #ebebeb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Recharts */
+[data-theme="light"] .recharts-default-tooltip         { background-color: #ffffff !important; border: 1px solid #e0e0e0 !important; }
+[data-theme="light"] .recharts-tooltip-label           { color: #666666 !important; }
+[data-theme="light"] .recharts-tooltip-item            { color: #111111 !important; }
+[data-theme="light"] .recharts-cartesian-axis-tick-value { fill: #999999 !important; }
+[data-theme="light"] .recharts-cartesian-grid line     { stroke: #eeeeee !important; }

@@ -121,7 +121,7 @@ function AnalyticsTab({ doctorId }: { doctorId: string }) {
             className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${
               activeFilter === f.value
                 ? "bg-accent-red border-accent-red text-white"
-                : "border-border-default text-text-muted hover:text-white hover:border-[#555]"
+                : "border-border-default text-text-muted hover:text-text-primary hover:border-border-default"
             }`}
           >
             {f.label}
@@ -292,7 +292,7 @@ const getInitials = (name = "") => {
       <div className="p-6 text-white">
         <button
   onClick={() => router.back()}
-  className="mb-4 px-4 py-2 bg-[#1f1f1f] hover:bg-[#2a2a2a] text-white text-sm rounded-lg border border-[#333] transition"
+  className="mb-4 px-4 py-2 bg-bg-elevated hover:bg-bg-hover text-text-primary text-sm rounded-lg border border-border-default transition"
 >
   ← Back
 </button>
@@ -389,7 +389,7 @@ const getInitials = (name = "") => {
                     <p className="text-sm font-semibold text-white mb-1">Qualifications</p>
                     <div className="flex flex-wrap gap-1">
                       {data.qualifications.map((q: string, i: number) => (
-                        <span key={i} className="text-xs bg-[#1f1f1f] border border-[#333] rounded px-2 py-0.5 text-gray-300">
+                        <span key={i} className="text-xs bg-bg-elevated border border-border-default rounded px-2 py-0.5 text-text-secondary">
                           {q.replace(/"/g, "")}
                         </span>
                       ))}
@@ -506,12 +506,12 @@ const getInitials = (name = "") => {
           <div
             key={key}
             onClick={() => setPreviewFile(data.documents[key])}
-            className="flex items-center gap-3 p-3 bg-[#141414] hover:bg-[#1f1f1f] rounded-lg cursor-pointer transition border border-transparent hover:border-[#333]"
+            className="flex items-center gap-3 p-3 bg-bg-card hover:bg-bg-hover rounded-lg cursor-pointer transition border border-border-subtle hover:border-border-default"
           >
             {getFileIcon(data.documents[key])}
             <div className="flex flex-col">
-              <span className="text-sm font-medium text-white">{label}</span>
-              <span className="text-xs text-gray-400">Click to preview</span>
+              <span className="text-sm font-medium text-text-primary">{label}</span>
+              <span className="text-xs text-text-muted">Click to preview</span>
             </div>
           </div>
         ) : null
@@ -535,7 +535,7 @@ const getInitials = (name = "") => {
                         src={data.paymentDetails.qrCode}
                         alt="Payment QR Code"
                         onClick={() => setPreviewFile(data.paymentDetails.qrCode)}
-                        className="w-32 h-32 object-contain rounded-lg border border-[#333] cursor-pointer hover:border-accent-red transition"
+                        className="w-32 h-32 object-contain rounded-lg border border-border-default cursor-pointer hover:border-accent-red transition"
                       />
                     </div>
                   )}
@@ -581,7 +581,7 @@ const getInitials = (name = "") => {
       {data.services.map((service: string, index: number) => (
         <span
           key={index}
-          className="px-3 py-1 text-xs bg-[#1f1f1f] rounded border border-[#333] hover:border-accent-red transition"
+          className="px-3 py-1 text-xs bg-bg-elevated text-text-secondary rounded border border-border-default hover:border-accent-red transition"
         >
           {service}
         </span>
@@ -603,15 +603,15 @@ const getInitials = (name = "") => {
         <div
           key={index}
           onClick={() => setPreviewFile(photo)}
-          className="flex items-center gap-3 p-3 bg-[#141414] hover:bg-[#1f1f1f] rounded-lg cursor-pointer transition border border-transparent hover:border-[#333]"
+          className="flex items-center gap-3 p-3 bg-bg-card hover:bg-bg-hover rounded-lg cursor-pointer transition border border-border-subtle hover:border-border-default"
         >
           {getFileIcon(photo)}
 
           <div className="flex flex-col">
-            <span className="text-sm font-medium text-white">
+            <span className="text-sm font-medium text-text-primary">
               Clinic Photo {index + 1}
             </span>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-text-muted">
               image_{index + 1}.jpg
             </span>
           </div>
