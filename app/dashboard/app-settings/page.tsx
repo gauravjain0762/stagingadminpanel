@@ -47,6 +47,7 @@ export default function AppSettingsPage() {
     } else {
       await dispatch(updateAppVersion({ key, payload: { latestVersion } }));
     }
+    dispatch(fetchAppVersions());
   };
 
   return (
