@@ -6,7 +6,7 @@ import { Save } from "lucide-react";
 
 const RichTextEditor = dynamic(() => import("@/components/ui/RichTextEditor"), { ssr: false });
 
-const BASE_URL = "https://api.queuetoken.in";
+const BASE_URL = "https://staging-api.queuetoken.in";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 
@@ -150,5 +150,6 @@ export default function PrivacyPage() {
     </DashboardLayout>
   );
 }
+
 
 

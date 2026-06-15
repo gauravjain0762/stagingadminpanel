@@ -1,6 +1,6 @@
 ﻿import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const BASE_URL = "https://api.queuetoken.in";
+const BASE_URL = "https://staging-api.queuetoken.in";
 const getToken = () =>
   typeof window !== "undefined"
     ? localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || ""
@@ -180,5 +180,6 @@ const plansSlice = createSlice({
 });
 
 export default plansSlice.reducer;
+
 
 
