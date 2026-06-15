@@ -1,7 +1,7 @@
 ﻿import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://api.queuetoken.in",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://staging-api.queuetoken.in",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -117,4 +117,5 @@ export const API = {
     resolve: (id: string) => `/support/tickets/${id}/resolve`,
   },
 };
+
 
