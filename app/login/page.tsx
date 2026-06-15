@@ -33,7 +33,7 @@ export default function LoginPage() {
     setError("");
     try {
       const res = await fetch(
-        "https://api.queuetoken.in/api/auth/admin-login",
+        "https://staging-api.queuetoken.in/api/auth/admin-login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -223,4 +223,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
 
