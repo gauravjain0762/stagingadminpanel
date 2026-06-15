@@ -1,7 +1,7 @@
 ﻿import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Appointment } from "@/types";
 
-const BASE_URL = "https://api.queuetoken.in";
+const BASE_URL = "https://staging-api.queuetoken.in";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 
@@ -121,5 +121,6 @@ export const {
   clearFilters: clearAppointmentsFilters,
 } = appointmentsSlice.actions;
 export default appointmentsSlice.reducer;
+
 
 

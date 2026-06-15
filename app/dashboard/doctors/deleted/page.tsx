@@ -14,7 +14,7 @@ import {
 } from "@/components/ui";
 import { X, Trash2, MapPin, Phone, Mail, Calendar, CheckCircle, History, UserX, ShieldAlert } from "lucide-react";
 
-const BASE_URL = "https://api.queuetoken.in";
+const BASE_URL = "https://staging-api.queuetoken.in";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 
@@ -509,4 +509,5 @@ export default function DeleteRequestsPage() {
     </DashboardLayout>
   );
 }
+
 

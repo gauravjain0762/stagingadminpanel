@@ -1,6 +1,6 @@
 ﻿import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const BASE_URL = "https://api.queuetoken.in";
+const BASE_URL = "https://staging-api.queuetoken.in";
 const getAdminToken = () =>
   localStorage.getItem("token") || localStorage.getItem("pulse_admin_token") || "";
 
@@ -125,4 +125,5 @@ const slice = createSlice({
 
 export const { setDeletedPage } = slice.actions;
 export default slice.reducer;
+
 
